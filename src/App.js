@@ -59,6 +59,10 @@ function App(props) {
 
   function addTask(name) {
     const newTask = { id: "todo-" + nanoid(), name: name, completed: false };
+    var oldArrayValue = localStorage.getItem('datakey');
+    var oldArray=JSON.parse(oldArrayValue);
+    var newArray=[...oldArray, newTask];
+    localStorage.setItem('datakey',JSON.stringify(newArray));
     setTasks([...tasks, newTask]);
   }
 
