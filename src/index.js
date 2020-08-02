@@ -3,10 +3,18 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 
-const DATA = [
-  { id: "todo-0", name: "Drink some water", completed: false },
-  { id: "todo-1", name: "Feed my dog", completed: true },
-  { id: "todo-2", name: "Write some code", completed: false }
-];
+
+// function init() {
+//   if (localStorage.getItem("dataKey") === null) {
+//     var initData = [];
+//     var dataObj = JSON.stringify(initData);
+//     localStorage.setItem("dataKey", dataObj);
+//   }
+// }
+// init();
+// const DATA = JSON.parse(localStorage.getItem("dataKey"));
+const DATA = localStorage.getItem("dataKey") ? JSON.parse(localStorage.getItem("dataKey")) : [];
+// const DATA = localStorage.getItem() ? JSON.parse(localStorage.getItem()) : [];
 
 ReactDOM.render(<App tasks={DATA} />, document.getElementById("root"));
+
