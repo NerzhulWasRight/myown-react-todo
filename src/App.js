@@ -31,6 +31,7 @@ function App(props) {
       }
       return task;
     });
+    localStorage.setItem("dataKey", JSON.stringify(updatedTasks));
     setTasks(updatedTasks);
   }
 
@@ -59,15 +60,15 @@ function App(props) {
 
   function addTask(name) {
     const newTask = { id: "todo-" + nanoid(), name: name, completed: false };
-    var oldArrayValue = localStorage.getItem('datakey');
-    var oldArray=JSON.parse(oldArrayValue);
-    var newArray=[...oldArray, newTask];
-    localStorage.setItem('datakey',JSON.stringify(newArray));
+    const oldArray = localStorage.getItem("dataKey") ? JSON.parse(localStorage.getItem("dataKey")) : [];
+    const newArray = [...oldArray, newTask];
+    localStorage.setItem("dataKey", JSON.stringify(newArray));
     setTasks([...tasks, newTask]);
   }
 
   function deleteTask(id) {
     const remainingTasks = tasks.filter((task) => id !== task.id);
+    localStorage.setItem("dataKey", JSON.stringify(remainingTasks));
     setTasks(remainingTasks);
   }
 
@@ -78,6 +79,7 @@ function App(props) {
       }
       return task;
     });
+    localStorage.setItem("dataKey", JSON.stringify(editedTaskList));
     setTasks(editedTaskList);
   }
 
